@@ -6,12 +6,22 @@
     <meta name="viewport" content="width=792, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="stylesheet" href="node_modules/shower-bright/styles/screen.css">
-    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
 
     <style>
-        .fa:before {
-            color: #bbb;
-            margin: 0 .5em 0 -1.5em;
+        .slide.shout.dark {
+            background-color: #000;
+        }
+
+        .slide.shout.golden {
+            background-color: #fd3;
+        }
+
+        .slide.shout.golden h2 {
+            color: #333;
+        }
+
+        .slide.shout h2 {
+            right: 0;
         }
     </style>
 </head>
@@ -20,16 +30,8 @@
 <header class="caption">
     <h1>Как потерять данные пользователей,<br>или История девяти байтов</h1>
 
-    <p>Доклад <a href="https://twitter.com/igorlukanin" target="_blank">Игоря Луканина</a> на <a href="https://twitter.com/search?q=%23конфур&src=typd" target="_blank">КонфУРе</a> в ноябре 2015 года</p>
+    <p><a href="https://twitter.com/igorlukanin" target="_blank">Игорь Луканин</a> для <a href="https://twitter.com/search?q=%23конфур&src=typd" target="_blank">КонфУРа</a> в ноябре 2015 года</p>
 </header>
-
-<section class="slide">
-    <div>
-        <h2>Как потерять данные пользователей,<br>или История девяти байтов</h2>
-        <p>Грустный рассказ о том, как расставленные в коде костыли однажды больно упадут вам на ногу, заставят удалить данные пользователей и&nbsp;отправят в увлекательное путешествие по закоулкам долговременных хранилищ.</p>
-        <p>Вы узнаете, почему код-ревью не спасает и к чему приводит честность с пользователями.</p>
-    </div>
-</section>
 
 <section class="slide cover">
     <div>
@@ -37,31 +39,35 @@
     </div>
 </section>
 
-<section class="slide">
+<section class="slide shout">
     <div>
         <h2>Как устроен сервис</h2>
-        <ul>
-            <li>Пять MVC-приложений</li>
-            <li>Пять Web API-сервисов</li>
-            <li>Консольное приложение для создания PDF-файлов</li>
-            <li>Данные в MongoDB</li>
-        </ul>
     </div>
 </section>
 
-<section class="slide">
+<section class="slide shout">
     <div>
-        <h2>Почему NoSQL</h2>
-        <ul>
-            <li>Все данные относятся к компаниям</li>
-            <li>Данные разных компаний не связаны друг с другом</li>
-            <li>В нормализованном виде данные хранились в 30 таблицах</li>
-            <li>Было много способов получить (и сохранить) данные о компании</li>
-        </ul>
-        <pre><code>https://152.kontur.ru/<mark class="important">020960679</mark>/properties</code></pre>
+        <h2>Почему NoSQL?</h2>
     </div>
 </section>
-<!-- TODO: Решить, нужна ли схема таблиц в MS SQL -->
+
+<section class="slide shout">
+    <div>
+        <h2>#1.<br>Компании<br>не связаны</h2>
+    </div>
+</section>
+
+<section class="slide shout">
+    <div>
+        <h2>#2.<br>Одна коллекция,<br>а не 30 таблиц</h2>
+    </div>
+</section>
+
+<section class="slide shout">
+    <div>
+        <h2>#3.<br>Избавились<br>от бойлерплейта</h2>
+    </div>
+</section>
 
 <section class="slide">
     <div>
@@ -120,9 +126,33 @@
 </section>
 <!-- TODO: Добавить подсветку синтаксиса -->
 
+<section class="slide">
+    <div>
+        <h2>Вычисление данных</h2>
+        <pre>
+            <code><mark class="comment">// Stored храним в базе данных, Calculated вычисляем</mark></code>
+            <code>Stored<sub>0</sub> + Calculated<sub>0</sub> = <mark class="important">Prepare</mark>    (Stored<sub>0</sub>)</code>
+            <code>Stored<sub>1</sub> + Calculated<sub>1</sub> = Process     (Stored<sub>0</sub> + Calculated<sub>0</sub>)</code>
+            <code>Stored<sub>2</sub>               = <mark class="important">PrepareSave</mark>(Stored<sub>1</sub> + Calculated<sub>1</sub>)</code>
+        </pre>
+    </div>
+</section>
+
 <section class="slide shout">
     <div>
-        <h2>Зачем менять данные?</h2>
+        <h2>Зачем<br>вычислять?</h2>
+    </div>
+</section>
+
+<section class="slide shout">
+    <div>
+        <h2>#1.<br>Дублирующиеся данные</h2>
+    </div>
+</section>
+
+<section class="slide shout">
+    <div>
+        <h2>#2.<br>Циклические ссылки</h2>
     </div>
 </section>
 
@@ -170,19 +200,50 @@
 
 <section class="slide shout">
     <div>
-        <h2>Релиз!</h2>
+        <h2>И в продакшн!</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>Через два дня заметили...</h2>
+        <h2>Через два дня Антон заметил...</h2>
     </div>
 </section>
 
 <section class="slide cover">
     <div>
         <img src="pictures/document-without-checks.png">
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2><span class="strikethrough">Сломанное</span> вычисление данных</h2>
+        <pre>
+            <code><mark class="comment">// Stored храним в базе данных, Calculated вычисляем</mark></code>
+            <code>Stored<sub>0</sub> + <mark class="important strikethrough">Calculated<sub>0</sub></mark> =              Stored<sub>0</sub></code>
+            <code>Stored<sub>1</sub> + <mark class="important strikethrough">Calculated<sub>1</sub></mark> = Process     (Stored<sub>0</sub> + Calculated<sub>0</sub>)</code>
+            <code><mark class="important strikethrough">Stored<sub>2</sub></mark>             <sub> </sub> = <mark class="important">PrepareSave</mark>(Stored<sub>1</sub> + Calculated<sub>1</sub>)</code>
+        </pre>
+    </div>
+
+    <style>
+        .hidden {
+            opacity: 0;
+        }
+
+        .strikethrough {
+            background-color: #f66 !important;
+            color: #fff;
+            padding-left: .2em !important;
+            padding-right: .2em !important;
+        }
+    </style>
+</section>
+
+<section class="slide shout">
+    <div>
+        <h2>Кто виноват?</h2>
     </div>
 </section>
 
@@ -210,27 +271,27 @@
     </div>
 </section>
 
-<section class="slide shout">
+<section class="slide shout dark">
     <div>
-        <h2>4530 компаний</h2>
+        <h2>Пострадало<br>4530 компаний</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>Идея: MS SQL</h2>
+        <h2>#1. MS SQL</h2>
+    </div>
+</section>
+
+<section class="slide shout dark">
+    <div>
+        <h2>Осталось<br>2170 компаний</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>2170 компаний</h2>
-    </div>
-</section>
-
-<section class="slide shout">
-    <div>
-        <h2>Идея: pisa.exe</h2>
+        <h2>#2. pisa.exe</h2>
     </div>
 </section>
 
@@ -246,27 +307,27 @@
     </div>
 </section>
 
-<section class="slide shout">
+<section class="slide shout dark">
     <div>
-        <h2>150 компаний</h2>
+        <h2>Осталось<br>150 компаний</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>Идея: эксперты</h2>
+        <h2>#3. Эксперты</h2>
+    </div>
+</section>
+
+<section class="slide shout dark">
+    <div>
+        <h2>Осталось<br>150 компаний</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>150 компаний</h2>
-    </div>
-</section>
-
-<section class="slide shout">
-    <div>
-        <h2>150 писем</h2>
+        <h2>Посылаем<br>150 писем</h2>
     </div>
 </section>
 
@@ -300,58 +361,84 @@
     </div>
 </section>
 
-<section class="slide">
+<section class="slide shout">
     <div>
-        <h2>Возвращаемся к жизни</h2>
-        <ul>
-            <li>Бэкапы</li>
-            <li>Рефакторинг</li>
-            <li>Выводы</li>
-        </ul>
+        <h2>Чему мы научились</h2>
     </div>
 </section>
 
-<section class="slide">
+<section class="slide cover">
     <div>
-        <h2>Технические выводы</h2>
-        <ul>
-            <li>Бэкапы — благо</li>
-            <li>Избыточность данных — благо</li>
-            <li>Функциональные тесты могли бы спасти</li>
-        </ul>
+        <img src="pictures/captain.png">
     </div>
 </section>
 
-<section class="slide">
+<section class="slide shout golden">
     <div>
-        <h2>Организационные выводы</h2>
-        <ul>
-            <li>Код-ревью — не панацея</li>
-            <li>Инфраструктуру должны поддерживать те, кто умеют</li>
-        </ul>
+        <h2>Избыточность<br>данных</h2>
     </div>
 </section>
 
-<section class="slide">
+<section class="slide shout golden">
     <div>
-        <h2>Главные выводы</h2>
-        <ul>
-            <li>Если что-то можно забыть — это будет забыто</li>
-            <li>Разложенные грабли обязательно ударят по лбу</li>
-            <li>Косяк одного — расхлёбывает вся команда</li>
-            <li>О фейлах не нужно молчать</li>
-        </ul>
+        <h2>Бэкапы<br>&nbsp;</h2>
     </div>
 </section>
 
-<section class="slide">
+<section class="slide shout golden">
     <div>
-        <h2>Контакты</h2>
-        <p>Твиттер</p>
-        <p>Ссылка на Гитхаб</p>
-        <p>Статья от Ильяхова — как извиняться</p>
+        <h2>Функциональные<br>тесты</h2>
     </div>
 </section>
+
+<section class="slide shout golden">
+    <div>
+        <h2>Код-ревью<br>&nbsp;</h2>
+    </div>
+</section>
+
+<section class="slide shout golden">
+    <div>
+        <h2>Поддержка<br>инфраструктуры</h2>
+    </div>
+</section>
+
+<section class="slide shout golden">
+    <div>
+        <h2>Ружьё на стене<br>и грабли в коде</h2>
+    </div>
+</section>
+
+<section class="slide shout golden">
+    <div>
+        <h2>Удовольствие<br>для каждого</h2>
+    </div>
+</section>
+
+<section class="slide shout golden">
+    <div>
+        <h2>Рассказывайте<br>о фейлах</h2>
+    </div>
+</section>
+
+<section class="slide shout" id="me">
+    <div>
+        <h2><a href="https://twitter.com/igorlukanin" target="_blank">@igorlukanin</a></h2>
+    </div>
+
+    <style>
+        #me a {
+            background-image: none;
+        }
+
+        #me h2 {
+            text-align: center;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</section>
+<!-- TODO: Статья от Ильяхова — как извиняться -->
 
 <p class="badge"><a href="https://github.com/igorlukanin/konfur-story-of-nine-bytes" target="_blank">Fork me on GitHub</a></p>
 

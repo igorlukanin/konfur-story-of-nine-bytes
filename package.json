@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "author": "Igor Lukanin",
   "dependencies": {
-    "font-awesome": "^4.4.0",
     "shower-bright": "^1.0.11",
     "shower-core": "^1.0.7"
   }
