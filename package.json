@@ -1,0 +1,10 @@
+{
+  "name": "konfur-story-of-nine-bytes",
+  "version": "0.1.0",
+  "author": "Igor Lukanin",
+  "dependencies": {
+    "font-awesome": "^4.4.0",
+    "shower-core": "^1.0.7",
+    "shower-ribbon": "^1.0.11"
+  }
+}
