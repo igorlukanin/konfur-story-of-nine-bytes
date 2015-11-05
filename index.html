@@ -84,7 +84,7 @@
 
 <section class="slide">
     <div>
-        <h2>Operator</h2>
+        <h2>Company</h2>
         <pre>
             <code>public Guid Id { get; set; }</code>
             <code>public string Inn { get; set; }</code>
@@ -98,14 +98,14 @@
 
 <section class="slide">
     <div>
-        <h2>IOperatorRepository</h2>
+        <h2>ICompanyRepository</h2>
         <pre>
             <code>void Remove(Guid id);</code>
-            <code>void Save(Operator company);</code>
-            <code>Operator Find(Guid id);</code>
-            <code>Operator FindByUid(string uid);</code>
-            <code>IEnumerable&lt;Operator&gt; FindByInn(string inn);</code>
-            <code>IEnumerable&lt;Operator&gt; FindWithRknNotifications();</code>
+            <code>void Save(Company company);</code>
+            <code>Company Find(Guid id);</code>
+            <code>Company FindByUid(string uid);</code>
+            <code>IEnumerable&lt;Company&gt; FindByInn(string inn);</code>
+            <code>IEnumerable&lt;Company&gt; FindWithRknNotifications();</code>
             <code><mark class="comment">// Ещё 13 таких же методов</mark></code>
         </pre>
     </div>
@@ -114,9 +114,9 @@
 
 <section class="slide">
     <div>
-        <h2>OperatorRepository</h2>
+        <h2>CompanyRepository</h2>
         <pre>
-            <code>public IEnumerable&lt;Operator&gt; FindByInn(string inn) {</code>
+            <code>public IEnumerable&lt;Company&gt; FindByInn(string inn) {</code>
             <code>    return mongoCollection.AsQueryable()</code>
             <code>        .Where(company => company.Inn == inn)</code>
             <code>        .Select(<mark class="important">Prepare</mark>);</code>
@@ -129,9 +129,9 @@
 
 <section class="slide">
     <div>
-        <h2>OperatorRepository</h2>
+        <h2>CompanyRepository</h2>
         <pre>
-            <code>public void Save(Operator company) {</code>
+            <code>public void Save(Company company) {</code>
             <code>    collection.Save(<mark class="important">PrepareSave</mark>(company));</code>
             <code>}</code>
         </pre>
@@ -159,9 +159,9 @@
 
 <section class="slide">
     <div>
-        <h2>OperatorRepository</h2>
+        <h2>CompanyRepository</h2>
         <pre>
-            <code>public IEnumerable&lt;Operator&gt; FindAll()</code>
+            <code>public IEnumerable&lt;Company&gt; FindAll()</code>
             <code>    return mongoCollection.FindAll();</code>
             <code>}</code>
         </pre>
