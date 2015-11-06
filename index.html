@@ -28,9 +28,9 @@
 <body class="list">
 
 <header class="caption">
-    <h1>Как потерять данные пользователей,<br>или История девяти байтов</h1>
+    <h1>Loosing your users' data&thinsp;—<br>the story of nine bytes</h1>
 
-    <p><a href="https://twitter.com/igorlukanin" target="_blank">Игорь Луканин</a> для <a href="https://twitter.com/search?q=%23конфур&src=typd" target="_blank">КонфУРа</a> в ноябре 2015 года</p>
+    <p><a href="https://twitter.com/igorlukanin" target="_blank">Igor Lukanin</a> at <a href="https://twitter.com/search?q=%23конфур&src=typd" target="_blank">Konfur</a>, November 2015</p>
 </header>
 
 <section class="slide cover">
@@ -41,31 +41,31 @@
 
 <section class="slide shout">
     <div>
-        <h2>Как устроен сервис</h2>
+        <h2>What we have</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>Почему NoSQL?</h2>
+        <h2>Why NoSQL?</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>#1.<br>Компании<br>не связаны</h2>
+        <h2>#1.<br>Users' accounts<br>are unrelated</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>#2.<br>Одна коллекция,<br>а не 30 таблиц</h2>
+        <h2>#2.<br>One collection<br>vs. 30 tables</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>#3.<br>Избавились<br>от бойлерплейта</h2>
+        <h2>#3.<br>Less boilerplate<br>&nbsp;</h2>
     </div>
 </section>
 
@@ -77,11 +77,10 @@
             <code>public string Inn { get; set; }</code>
             <code>public List&lt;PaperDocument&gt; <mark class="important">PaperDocuments</mark> { get; set; }</code>
             <code>public List&lt;RknNotification&gt; <mark class="important">RknNotifications</mark> { get; set; }</code>
-            <code><mark class="comment">// Ещё 42 таких же поля</mark></code>
+            <code><mark class="comment">// 42 more properties like this</mark></code>
         </pre>
     </div>
 </section>
-<!-- TODO: Добавить подсветку синтаксиса -->
 
 <section class="slide">
     <div>
@@ -93,11 +92,10 @@
             <code>Company FindByUid(string uid);</code>
             <code>IEnumerable&lt;Company&gt; FindByInn(string inn);</code>
             <code>IEnumerable&lt;Company&gt; FindWithRknNotifications();</code>
-            <code><mark class="comment">// Ещё 13 таких же методов</mark></code>
+            <code><mark class="comment">// 13 more methods like this</mark></code>
         </pre>
     </div>
 </section>
-<!-- TODO: Добавить подсветку синтаксиса -->
 
 <section class="slide">
     <div>
@@ -108,11 +106,10 @@
             <code>        .Where(company => company.Inn == inn)</code>
             <code>        .Select(<mark class="important">Prepare</mark>);</code>
             <code>}</code>
-            <code><mark class="comment">// И ещё много более сложных запросов</mark></code>
+            <code><mark class="comment">// Many more complicated queries</mark></code>
         </pre>
     </div>
 </section>
-<!-- TODO: Добавить подсветку синтаксиса -->
 
 <section class="slide">
     <div>
@@ -124,13 +121,12 @@
         </pre>
     </div>
 </section>
-<!-- TODO: Добавить подсветку синтаксиса -->
 
 <section class="slide">
     <div>
-        <h2>Вычисление данных</h2>
+        <h2>Data calculation</h2>
         <pre>
-            <code><mark class="comment">// Stored храним в базе данных, Calculated вычисляем</mark></code>
+            <code><mark class="comment">// Stored in database and Calculated data</mark></code>
             <code>Stored<sub>0</sub> + Calculated<sub>0</sub> = <mark class="important">Prepare</mark>    (Stored<sub>0</sub>)</code>
             <code>Stored<sub>1</sub> + Calculated<sub>1</sub> = Process     (Stored<sub>0</sub> + Calculated<sub>0</sub>)</code>
             <code>Stored<sub>2</sub>               = <mark class="important">PrepareSave</mark>(Stored<sub>1</sub> + Calculated<sub>1</sub>)</code>
@@ -140,19 +136,19 @@
 
 <section class="slide shout">
     <div>
-        <h2>Зачем<br>вычислять?</h2>
+        <h2>Why?</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>#1.<br>Дублирующиеся данные</h2>
+        <h2>#1.<br>Data duplication<br>&nbsp;</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>#2.<br>Циклические ссылки</h2>
+        <h2>#2.<br>Circular<br>references</h2>
     </div>
 </section>
 
@@ -164,7 +160,7 @@
 
 <section class="slide shout">
     <div>
-        <h2>Однажды...</h2>
+        <h2>Once upon a time...</h2>
     </div>
 </section>
 
@@ -178,7 +174,6 @@
         </pre>
     </div>
 </section>
-<!-- TODO: Добавить подсветку синтаксиса -->
 
 <section class="slide cover">
     <div>
@@ -188,25 +183,25 @@
 
 <section class="slide shout">
     <div>
-        <h2>Код-ревью</h2>
+        <h2>Code review</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>Тестирование</h2>
+        <h2>Quality assurance</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>И в продакшн!</h2>
+        <h2>Deployed!</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>Через два дня Антон заметил...</h2>
+        <h2>In two days<br>our tester spots<br>something...</h2>
     </div>
 </section>
 
@@ -218,9 +213,9 @@
 
 <section class="slide">
     <div>
-        <h2><span class="strikethrough">Сломанное</span> вычисление данных</h2>
+        <h2><span class="strikethrough">Broken</span> data calculation</h2>
         <pre>
-            <code><mark class="comment">// Stored храним в базе данных, Calculated вычисляем</mark></code>
+            <code><mark class="comment">// Stored in database and Calculated data</mark></code>
             <code>Stored<sub>0</sub> + <mark class="important strikethrough">Calculated<sub>0</sub></mark> =              Stored<sub>0</sub></code>
             <code>Stored<sub>1</sub> + <mark class="important strikethrough">Calculated<sub>1</sub></mark> = Process     (Stored<sub>0</sub> + Calculated<sub>0</sub>)</code>
             <code><mark class="important strikethrough">Stored<sub>2</sub></mark>             <sub> </sub> = <mark class="important">PrepareSave</mark>(Stored<sub>1</sub> + Calculated<sub>1</sub>)</code>
@@ -243,7 +238,7 @@
 
 <section class="slide shout">
     <div>
-        <h2>Кто виноват?</h2>
+        <h2>Who is<br>responsible?</h2>
     </div>
 </section>
 
@@ -261,7 +256,7 @@
 
 <section class="slide shout">
     <div>
-        <h2>Бэкапов нет</h2>
+        <h2>No backups</h2>
     </div>
 </section>
 
@@ -273,7 +268,7 @@
 
 <section class="slide shout dark">
     <div>
-        <h2>Пострадало<br>4530 компаний</h2>
+        <h2>4530<br>accounts affected</h2>
     </div>
 </section>
 
@@ -285,7 +280,7 @@
 
 <section class="slide shout dark">
     <div>
-        <h2>Осталось<br>2170 компаний</h2>
+        <h2>2170<br>accounts left</h2>
     </div>
 </section>
 
@@ -309,25 +304,25 @@
 
 <section class="slide shout dark">
     <div>
-        <h2>Осталось<br>150 компаний</h2>
+        <h2>150<br>accounts left</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>#3. Эксперты</h2>
+        <h2>#3. Assumptions<br>and speculations</h2>
     </div>
 </section>
 
 <section class="slide shout dark">
     <div>
-        <h2>Осталось<br>150 компаний</h2>
+        <h2>150<br>accounts left</h2>
     </div>
 </section>
 
 <section class="slide shout">
     <div>
-        <h2>Посылаем<br>150 писем</h2>
+        <h2>150 letters<br>to users</h2>
     </div>
 </section>
 
@@ -345,7 +340,7 @@
 
 <section class="slide shout">
     <div>
-        <h2>Два письма<br>и два звонка</h2>
+        <h2>Two replies &<br>two phone calls</h2>
     </div>
 </section>
 
@@ -363,7 +358,7 @@
 
 <section class="slide shout">
     <div>
-        <h2>Чему мы научились</h2>
+        <h2>Outcomes</h2>
     </div>
 </section>
 
@@ -375,49 +370,49 @@
 
 <section class="slide shout golden">
     <div>
-        <h2>Избыточность<br>данных</h2>
+        <h2>Data redundancy<br>&nbsp;</h2>
     </div>
 </section>
 
 <section class="slide shout golden">
     <div>
-        <h2>Бэкапы<br>&nbsp;</h2>
+        <h2>Backups<br>&nbsp;</h2>
     </div>
 </section>
 
 <section class="slide shout golden">
     <div>
-        <h2>Функциональные<br>тесты</h2>
+        <h2>Smoke testing<br>&nbsp;</h2>
     </div>
 </section>
 
 <section class="slide shout golden">
     <div>
-        <h2>Код-ревью<br>&nbsp;</h2>
+        <h2>Code review<br>&nbsp;</h2>
     </div>
 </section>
 
 <section class="slide shout golden">
     <div>
-        <h2>Поддержка<br>инфраструктуры</h2>
+        <h2>Infrastructure<br>crews</h2>
     </div>
 </section>
 
 <section class="slide shout golden">
     <div>
-        <h2>Ружьё на стене<br>и грабли в коде</h2>
+        <h2>Shooting yourself<br>in the foot</h2>
     </div>
 </section>
 
 <section class="slide shout golden">
     <div>
-        <h2>Удовольствие<br>для каждого</h2>
+        <h2>Joy & pleasure<br>for everyone</h2>
     </div>
 </section>
 
 <section class="slide shout golden">
     <div>
-        <h2>Рассказывайте<br>о фейлах</h2>
+        <h2>Have failed?<br>Be vocal</h2>
     </div>
 </section>
 
@@ -438,7 +433,6 @@
         }
     </style>
 </section>
-<!-- TODO: Статья от Ильяхова — как извиняться -->
 
 <p class="badge"><a href="https://github.com/igorlukanin/konfur-story-of-nine-bytes" target="_blank">Fork me on GitHub</a></p>
 
@@ -448,7 +442,7 @@
 
 <script src="node_modules/shower-core/shower.min.js"></script>
 
-<!-- Yandex.Metrika counter <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter33414963 = new Ya.Metrika({ id:33414963, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="https://mc.yandex.ru/watch/33414963" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+<!-- Yandex.Metrika counter --><script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter33414963 = new Ya.Metrika({ id:33414963, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="https://mc.yandex.ru/watch/33414963" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
 
 </body>
 </html>
